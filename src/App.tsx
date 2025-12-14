@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useRef, useMemo } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { 
-  Layout, 
   Settings, 
   Users, 
   Printer, 
@@ -8,12 +7,7 @@ import {
   Upload, 
   Trash2, 
   Download, 
-  Move, 
-  Type, 
-  Image as ImageIcon,
-  Grid,
   FileText,
-  RotateCcw,
   Check
 } from 'lucide-react';
 
@@ -58,12 +52,6 @@ const SAMPLE_DATA: Person[] = [
 const COLORS = [
   '#000000', '#FFFFFF', '#1F2937', '#DC2626', '#2563EB', '#059669', '#D97706'
 ];
-
-// --- Helper Functions ---
-
-const cmToPx = (cm: number, dpi: number = 96) => (cm / 2.54) * dpi;
-const mmToPx = (mm: number, dpi: number = 96) => (mm / 25.4) * dpi;
-const pxToMm = (px: number, dpi: number = 96) => (px * 25.4) / dpi;
 
 // --- Main Component ---
 
@@ -333,9 +321,6 @@ function DesignTab({
   const canvasRef = useRef<HTMLDivElement>(null);
   const [dragState, setDragState] = useState<{ id: string, startX: number, startY: number, initX: number, initY: number } | null>(null);
 
-  // Constants for calculating display scaling
-  const DISPLAY_PADDING = 40; // px
-  
   const handleMouseDown = (e: React.MouseEvent, id: string, currentX: number, currentY: number) => {
     e.stopPropagation();
     setSelectedFieldId(id);
